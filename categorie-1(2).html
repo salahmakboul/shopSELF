@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | SELFStore</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <style>
+        :root {
+            --primary-color: #2a2a2a;
+            --secondary-color: #f8f9fa;
+            --accent-color: #e83e8c;
+            --light-gray: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-color);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+        }
+        
+        .hero-section {
+            background: url('https://via.placeholder.com/1920x600') center/cover no-repeat;
+            height: 400px;
+            position: relative;
+        }
+        
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .filter-section {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        .form-check-label {
+            cursor: pointer;
+        }
+        
+        .product-card {
+            border: none;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .badge-sale {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-color);
+        }
+        
+        .price {
+            font-weight: 600;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .view-options {
+            margin-bottom: 20px;
+        }
+        
+        .view-options .btn {
+            padding: 5px 15px;
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .pagination .page-link {
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .filter-section {
+                margin-bottom: 30px;
+            }
+            
+            .hero-section {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">SELFSHOP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Collections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#searchModal">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <a href="account/login.html" class="btn btn-outline-dark me-2">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="produit-x.html" class="btn btn-outline-dark position-relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-overlay">
+            <div>
+                <h1 class="display-4 fw-bold">Summer Collection</h1>
+                <p class="lead">Discover our latest arrivals</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Shop</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            
+            <div class="col-lg-3">
+                <div class="filter-section mb-4">
+                    <h5 class="filter-title">Categories</h5>
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action active">All Clothing</a>
+                        <a href="#" class="list-group-item list-group-item-action">Men's Wear</a>
+                        <a href="#" class="list-group-item list-group-item-action">Kids Collection</a>
+                    </div>
+                </div>
+                
+                <div class="filter-section mb-4">
+                    <h5 class="filter-title">Price Range</h5>
+                    <div class="range-slider">
+                        <input type="range" class="form-range" min="0" max="500" step="10" id="priceRange">
+                        <div class="d-flex justify-content-between mt-2">
+                            <span>$0</span>
+                            <span>$500</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section mb-4">
+                    <h5 class="filter-title">Size</h5>
+                    <div class="size-options">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sizeXS">
+                            <label class="form-check-label" for="sizeXS">XS</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sizeS">
+                            <label class="form-check-label" for="sizeS">S</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sizeM">
+                            <label class="form-check-label" for="sizeM">M</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sizeL">
+                            <label class="form-check-label" for="sizeL">L</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sizeXL">
+                            <label class="form-check-label" for="sizeXL">XL</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section mb-4">
+                    <h5 class="filter-title">Color</h5>
+                    <div class="color-options">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="colorRed">
+                            <label class="form-check-label" for="colorRed">
+                                <span class="color-dot" style="background-color: #ff0000;"></span> Red
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="colorBlue">
+                            <label class="form-check-label" for="colorBlue">
+                                <span class="color-dot" style="background-color: #0000ff;"></span> Blue
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="colorBlack">
+                            <label class="form-check-label" for="colorBlack">
+                                <span class="color-dot" style="background-color: #000000;"></span> Black
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="colorWhite">
+                            <label class="form-check-label" for="colorWhite">
+                                <span class="color-dot" style="background-color: #ffffff; border: 1px solid #ddd;"></span> White
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-dark w-100">Apply Filters</button>
+                <button class="btn btn-outline-dark w-100 mt-2">Reset Filters</button>
+            </div>
+            
+            
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>All Products</h2>
+                    <div class="d-flex align-items-center">
+                        <span class="me-2">Sort by:</span>
+                        <select class="form-select form-select-sm" style="width: auto;">
+                            <option selected>Featured</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Newest Arrivals</option>
+                            <option>Best Selling</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="view-options d-flex justify-content-end mb-3">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-dark active" id="gridView">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-dark" id="listView">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="row" id="productContainer">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-4">
+                        <div class="card product-card h-100">
+                            <div class="badge badge-sale bg-danger">SALE</div>
+                            <img src="images\product15.png" class="card-img-top product-img" alt="Product 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Premium Denim Jacket</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="price text-danger">$59.99</span>
+                                        <span class="old-price ms-2">$79.99</span>
+                                    </div>
+                                    <div class="rating small text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-dark btn-sm">Add to Cart</button>
+                                    <button class="btn btn-outline-dark btn-sm">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-4">
+                        <div class="card product-card h-100">
+                            <img src="images\product1.jpg" class="card-img-top product-img" alt="Product 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Casual T-Shirt</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="price">$29.99</span>
+                                    </div>
+                                    <div class="rating small text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-dark btn-sm">Add to Cart</button>
+                                    <button class="btn btn-outline-dark btn-sm">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-4">
+                        <div class="card product-card h-100">
+                            <div class="badge badge-sale bg-danger">NEW</div>
+                            <img src="images/product4.jpg" class="card-img-top product-img" alt="Product 3">
+                            <div class="card-body">
+                                <h5 class="card-title">pair of black pant</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="price">$49.99</span>
+                                    </div>
+                                    <div class="rating small text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-dark btn-sm">Add to Cart</button>
+                                    <button class="btn btn-outline-dark btn-sm">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-4">
+                        <div class="card product-card h-100">
+                            <img src="images\product17.png" class="card-img-top product-img" alt="Product 4">
+                            <div class="card-body">
+                                <h5 class="card-title">men suit with navy blue</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="price">$39.99</span>
+                                    </div>
+                                    <div class="rating small text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-dark btn-sm">Add to Cart</button>
+                                    <button class="btn btn-outline-dark btn-sm">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-4">
+                        <div class="card product-card h-100">
+                            <img src="images\product10.png" class="card-img-top product-img" alt="Product 5">
+                            <div class="card-body">
+                                <h5 class="card-title">Formal Shirt</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="price">$34.99</span>
+                                    </div>
+                                    <div class="rating small text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-dark btn-sm">Add to Cart</button>
+                                    <button class="btn btn-outline-dark btn-sm">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-4">
+                        <div class="card product-card h-100">
+                            <div class="badge badge-sale bg-danger">-20%</div>
+                            <img src="images\product11.png" class="card-img-top product-img" alt="Product 6">
+                            <div class="card-body">
+                                <h5 class="card-title">Sports Hoodie</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="price text-danger">$45.99</span>
+                                        <span class="old-price ms-2">$57.99</span>
+                                    </div>
+                                    <div class="rating small text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-dark btn-sm">Add to Cart</button>
+                                    <button class="btn btn-outline-dark btn-sm">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-4">
+                        <div class="card product-card h-100">
+                            <img src="images\product18.png" class="card-img-top product-img" alt="Product 7">
+                            <div class="card-body">
+                                <h5 class="card-title">fromal shoes</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="price">$24.99</span>
+                                    </div>
+                                    <div class="rating small text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-dark btn-sm">Add to Cart</button>
+                                    <button class="btn btn-outline-dark btn-sm">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-4">
+                        <div class="card product-card h-100">
+                            <img src="images\product3.jpg" class="card-img-top product-img" alt="Product 8">
+                            <div class="card-body">
+                                <h5 class="card-title">Wool Sweater</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="price">$64.99</span>
+                                    </div>
+                                    <div class="rating small text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-dark btn-sm">Add to Cart</button>
+                                    <button class="btn btn-outline-dark btn-sm">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-uppercase">Fashion Store</h5>
+                    <p>Premium clothing for everyone. Quality and style at affordable prices.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-uppercase">Shop</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Men's Wear</a></li>
+                        <li><a href="#" class="text-white">Women's Wear</a></li>
+                        <li><a href="#" class="text-white">Kids Collection</a></li>
+                        <li><a href="#" class="text-white">Accessories</a></li>
+                        <li><a href="#" class="text-white">Sale</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-uppercase">Help</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Customer Service</a></li>
+                        <li><a href="#" class="text-white">Track Order</a></li>
+                        <li><a href="#" class="text-white">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-white">Shipping Info</a></li>
+                        <li><a href="#" class="text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-uppercase">Newsletter</h5>
+                    <p>Subscribe to get updates on new arrivals and special offers.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">&copy; 2023 Fashion Store. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0">
+                        <a href="#" class="text-white">Privacy Policy</a> | 
+                        <a href="#" class="text-white">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
+                        <button class="btn btn-dark" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('gridView').addEventListener('click', function() {
+            document.getElementById('productContainer').classList.remove('list-view');
+            this.classList.add('active');
+            document.getElementById('listView').classList.remove('active');
+        });
+        
+        document.getElementById('listView').addEventListener('click', function() {
+            document.getElementById('productContainer').classList.add('list-view');
+            this.classList.add('active');
+            document.getElementById('gridView').classList.remove('active');
+        });
+        
+        const priceRange = document.getElementById('priceRange');
+        priceRange.addEventListener('input', function() {
+            document.getElementById('priceValue').textContent = '$' + this.value;
+        });
+    </script>
+</body>
+</html>
